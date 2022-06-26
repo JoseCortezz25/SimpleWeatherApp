@@ -8,7 +8,7 @@
 
 .container__info {
   width: 60%;
-  height: 60vh;
+  /* height: 60vh; */
 }
 
 .box__top {
@@ -26,7 +26,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .box__extra {
@@ -143,4 +142,27 @@
 .search__icon svg {
   width: 4rem;
   height: 4rem;
+}
+
+@media (max-width: 820px) {
+  .container__info {
+    width: 90%;
+    height: auto;
+  }
+  .bottom {
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 493px) {
+  .bottom {
+    width: 100%;
+  }
+  .box__top {
+    font-size: 1.5rem;
+  }
+  .inputSearch {
+    max-width: 160px;
+  }
 }
