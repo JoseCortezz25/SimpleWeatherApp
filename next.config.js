@@ -8,7 +8,7 @@ const nextConfig = {
     mode: 'production',
     disable: false,
   },
-  reactStrictMode: true
+  reactStrictMode: true,
 }
 
 module.exports = nextConfig

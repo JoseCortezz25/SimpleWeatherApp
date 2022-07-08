@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 
 
   const getResultWeather = (city: String) => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=70acd7ea86ae3d7d3c45a37ae2ffff8d`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY}`)
     .then(response => response.json())
     .then(json => {
       if (json.cod === '404' || json.cod === '400'){
