@@ -1,3 +1,9 @@
+# Simple Weather App
+![Image text](https://raw.githubusercontent.com/JoseCortezz25/SimpleWeatherApp/main/screenshot.png?token=GHSAT0AAAAAABV4OKY2ZOV22WCXV4TO7ZQ2YWIJR5Q)
+
+A simple weather app made with Next and Open Weather Map.
+
+---
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
