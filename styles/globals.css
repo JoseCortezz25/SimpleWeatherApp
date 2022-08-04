@@ -4,8 +4,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  background-color: #f1f1f1;
   font-size: 62.5%;
+  background-color: #f1f1f1;
+  transition: all 0.5s ease-in-out;
 }
 
 a {
@@ -20,3 +21,15 @@ a {
 /* p {
   font-size: 2rem;
 } */
+
+.dark {
+  background-color: #010409;
+  color: #f1f1f1;
+}
+
+.dark input{
+  color: #f1f1f1;
+}
+.light {
+  background-color: #f1f1f1;
+}

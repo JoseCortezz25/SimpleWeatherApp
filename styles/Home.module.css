@@ -2,13 +2,33 @@
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.header {
+  width: 60%;
+  margin-bottom: 4rem;
+  display: flex;
+  place-content: space-between;
+}
+
+.header span {
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.toggleTheme {
+  background-color: transparent;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
 .container__info {
   width: 60%;
-  /* height: 60vh; */
 }
 
 .box__top {
@@ -50,6 +70,7 @@
   display: inline;
   margin-left: 1rem;
   border-bottom: 1px solid #5a5a5a;
+  color: #000;
 }
 
 .initialText {

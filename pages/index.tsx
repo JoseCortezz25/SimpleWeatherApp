@@ -7,31 +7,40 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
   const [data, setData] = useState({}) as any
   const [search, setSearch] = useState('');
-  const [error, setError] = useState({error: false, message: ''});
+  const [error, setError] = useState({ error: false, message: '' });
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
   const cities = ['London', 'Tokyo', 'Paris', 'Rome', 'Washington D.C.', 'Berlin', 'Buenos Aires', 'Bangkok', 'Cape Town', 'Wellington', 'Bogota', 'Neiva', 'Quito', 'Tórshavn', 'Saint Peter Port', 'Dublin', 'Saint Helier', 'Lisbon', 'Belgrade', 'Madrid', 'Città del Vaticano', 'The Valley', 'Brasília']
-
 
   const getResultWeather = (city: String) => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY}`)
-    .then(response => response.json())
-    .then(json => {
-      if (json.cod === '404' || json.cod === '400'){
-        setError({error: true, message: json.message}) 
-      } else {
-        setError({error: false, message: ''})
-      }
-      console.log(json);
-      setData(json);
-    })
-    .catch(err => console.log('Solicitud fallida', err));
+      .then(response => response.json())
+      .then(json => {
+        if (json.cod === '404' || json.cod === '400') {
+          setError({ error: true, message: json.message })
+        } else {
+          setError({ error: false, message: '' })
+        }
+        console.log(json);
+        setData(json);
+      })
+      .catch(err => console.log('Solicitud fallida', err));
+  }
+
+  const changeTheme = () => {
+    toggleTheme()
+
+    theme === 'light'
+      ? (document.body.classList.add('dark'), document.body.classList.remove('light'))
+      : (document.body.classList.add('light'), document.body.classList.remove('dark'))
   }
 
   useEffect(() => {
     let numberRandom = Math.round(Math.random() * cities.length)
     getResultWeather(cities[numberRandom])
   }, [])
-  
-  
+
+
   const handleSearch = (event: any) => {
     if (event.key === 'Enter') {
       getResultWeather(search)
@@ -51,6 +60,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={styles.header}>
+        <span>Simple Weather App</span>
+        <button className={styles.toggleTheme} onClick={changeTheme}>
+          {theme === 'light' ? '🌙' : '🌞' }
+        </button>
+      </div>
       <div className={styles.container__info}>
         <div className={styles['box__top']}>
           <p className={styles.initialText}>Right now
@@ -65,32 +80,32 @@ const Home: NextPage = () => {
           </p>
         </div>
 
-        {error.error ? <NotFound message={error.message}/> : (
-        <div className={styles['box__info']}>
-          <div className={styles.temp}>
-            {data.main ? <p>{kelvinToCelcius(data.main.temp)} °C</p> : null}
-          </div>
-          <div className={styles.location}>
-            <h1>{data.name} - {data.sys ? data.sys.country : null}</h1>
-          </div>
-          <div className={styles.bottom}>
-            <div className={styles.bottom__item}>
-              {data.main ? <p className={styles.subvalue__item}>{kelvinToCelcius(data.main.feels_like)} °C</p> : null}
-              <p className={styles.subtitle__item}>Feels</p>
+        {error.error ? <NotFound message={error.message} theme={theme} /> : (
+          <div className={styles['box__info']}>
+            <div className={styles.temp}>
+              {data.main ? <p>{kelvinToCelcius(data.main.temp)} °C</p> : null}
             </div>
-            <div className={styles.bottom__item}>
-              {data.main ? <p className={styles.subvalue__item}>{data.main.humidity}%</p> : null}
-              <p className={styles.subtitle__item}>Humidity</p>
+            <div className={styles.location}>
+              <h1>{data.name} - {data.sys ? data.sys.country : null}</h1>
             </div>
-            <div className={styles.bottom__item}>
-              {data.wind ? <p className={styles.subvalue__item}>{data.wind.speed} MPH</p> : null}
-              <p className={styles.subtitle__item}>Wind</p>
+            <div className={styles.bottom}>
+              <div className={styles.bottom__item}>
+                {data.main ? <p className={styles.subvalue__item}>{kelvinToCelcius(data.main.feels_like)} °C</p> : null}
+                <p className={styles.subtitle__item}>Feels</p>
+              </div>
+              <div className={styles.bottom__item}>
+                {data.main ? <p className={styles.subvalue__item}>{data.main.humidity}%</p> : null}
+                <p className={styles.subtitle__item}>Humidity</p>
+              </div>
+              <div className={styles.bottom__item}>
+                {data.wind ? <p className={styles.subvalue__item}>{data.wind.speed} MPH</p> : null}
+                <p className={styles.subtitle__item}>Wind</p>
+              </div>
             </div>
           </div>
-        </div>
         )}
       </div>
-    </div >
+    </div>
   )
 }
 
