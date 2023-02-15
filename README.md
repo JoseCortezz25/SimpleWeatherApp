@@ -1,10 +1,18 @@
 # Simple Weather App
+
+Aplicación web que muestra el pronóstico del tiempo en cualquier ciudad del mundo. La información se obtiene de la API de Open Weather Map, la cual brinda información actualizada y precisa sobre la temperatura, humedad, viento y otros aspectos meteorológicos. La aplicación fue desarrollada utilizando Next.js
+
 ![Image text](https://raw.githubusercontent.com/JoseCortezz25/SimpleWeatherApp/main/screenshot.png?token=GHSAT0AAAAAABV4OKY2ZOV22WCXV4TO7ZQ2YWIJR5Q)
 
-A simple weather app made with Next and Open Weather Map.
+## Tecnologías
 
----
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- React
+- Next.js
+- React Hooks
+- Axios
+- CSS
+- HTML
+- JavaScript
 
 ## Getting Started
 
